@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Baloo_2 } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 import "./globals.css";
 
 const anton = Anton({
@@ -36,6 +37,7 @@ export default function RootLayout({
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );
