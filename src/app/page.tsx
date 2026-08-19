@@ -1,5 +1,4 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
 import Button from "@/components/Button";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import FadeInSection from "@/components/FadeInSection";
@@ -66,23 +65,6 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
                     rotate={tilt > 0 ? -9 : 9}
                     className="-top-5 -right-3"
                   />
-                )}
-                {item.thumbnail && (
-                  <div
-                    aria-hidden="true"
-                    className="pinned pointer-events-none absolute -top-5 -right-4 z-10"
-                    style={{ "--rot": `${tilt > 0 ? -8 : 8}deg` } as CSSProperties}
-                  >
-                    <div className="overflow-hidden rounded-md border-2 border-white shadow-md ring-1 ring-espresso/15">
-                      <Image
-                        src={item.thumbnail.src}
-                        alt={item.thumbnail.alt}
-                        width={120}
-                        height={120}
-                        className="h-16 w-16 object-cover"
-                      />
-                    </div>
-                  </div>
                 )}
                 <Tape rotate={tilt * 3} className="-top-2.5 left-1/2 h-5 w-14 -translate-x-1/2" />
                 <div className="flex h-full flex-col overflow-hidden rounded-xl border-2 border-espresso/10 bg-white text-center shadow-md">

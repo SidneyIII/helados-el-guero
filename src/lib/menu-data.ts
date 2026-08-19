@@ -4,9 +4,6 @@ export type MenuItem = {
   price: string;
   popular?: boolean;
   image?: { src: string; alt: string };
-  // Small pinned corner photo -- unlike `image`, doesn't add height to the
-  // card, so it can't shift the surrounding grid/masonry layout.
-  thumbnail?: { src: string; alt: string };
 };
 
 export type MenuCategory = {
@@ -80,7 +77,7 @@ export const MENU: MenuCategory[] = [
         name: "Elote",
         description: "Grilled corn on the cob, classic toppings.",
         price: "$4.00",
-        thumbnail: { src: "/menu/elote.jpg", alt: "Elote" },
+        image: { src: "/menu/elote.jpg", alt: "Elote" },
       },
       { name: "Elote Fuego", description: "Grilled corn on the cob, extra spicy.", price: "$6.00" },
     ],
