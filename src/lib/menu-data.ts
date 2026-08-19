@@ -73,7 +73,12 @@ export const MENU: MenuCategory[] = [
     items: [
       { name: "Esquite (Regular)", description: "Warm corn, mayo, cotija, chile, lime.", price: "$5.00" },
       { name: "Esquite (Large)", description: "Warm corn, mayo, cotija, chile, lime — large.", price: "$8.00" },
-      { name: "Elote", description: "Grilled corn on the cob, classic toppings.", price: "$4.00" },
+      {
+        name: "Elote",
+        description: "Grilled corn on the cob, classic toppings.",
+        price: "$4.00",
+        image: { src: "/menu/elote.jpg", alt: "Elote" },
+      },
       { name: "Elote Fuego", description: "Grilled corn on the cob, extra spicy.", price: "$6.00" },
     ],
   },
