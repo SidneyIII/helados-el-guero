@@ -564,7 +564,7 @@ export default function Home() {
                 width={1024}
                 height={1024}
                 priority
-                className="h-auto w-full max-w-[380px] md:max-w-xl"
+                className="h-auto w-full max-w-[240px] sm:max-w-[380px] md:max-w-xl"
               />
             </FadeInSection>
           </div>
