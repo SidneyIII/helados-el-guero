@@ -286,7 +286,7 @@ function ZigzagCluster({ className = "", flip = false }: { className?: string; f
         <g
           key={color}
           transform={`translate(${i * 78},0)`}
-          className="zigzag-ribbon"
+          className={`zigzag-ribbon ${i === 2 ? "hidden sm:block" : ""}`}
           style={{ animationDelay: `${i * 0.25}s` }}
         >
           <path
