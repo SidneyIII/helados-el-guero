@@ -1,13 +1,11 @@
-import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-espresso/10 bg-cream">
+    <footer className="border-t-2 border-espresso/10 bg-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-3">
         <div>
-          <p className="font-display text-xl text-espresso">EL GÜERO</p>
-          <p className="mt-2 font-body text-sm text-espresso/70">{siteConfig.tagline}</p>
+          <p className="font-body text-sm font-semibold text-espresso">{siteConfig.tagline}</p>
           <div className="mt-4 flex gap-4 font-body text-sm font-semibold text-terracotta">
             <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-espresso">
               Instagram
@@ -47,9 +45,9 @@ export default function Footer() {
           © {new Date().getFullYear()} {siteConfig.name}. Made with care in Council Bluffs, Iowa.
         </p>
         <p className="mt-1">
-          <Link href="/contact" className="hover:text-terracotta">
+          <a href="#contact" className="hover:text-terracotta">
             Get in touch
-          </Link>
+          </a>
         </p>
       </div>
     </footer>

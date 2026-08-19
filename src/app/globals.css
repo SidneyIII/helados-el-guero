@@ -27,3 +27,139 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+.zigzag-ribbon {
+  stroke-dasharray: 430;
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .zigzag-ribbon {
+    animation: zigzag-draw 6s ease-in-out infinite;
+  }
+}
+
+@keyframes zigzag-draw {
+  0% {
+    stroke-dashoffset: 430;
+  }
+  45% {
+    stroke-dashoffset: 0;
+  }
+  55% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 430;
+  }
+}
+
+.crayon-a,
+.crayon-b,
+.crayon-c,
+.crayon-d,
+.crayon-e {
+  border-style: solid;
+  border-width: clamp(18px, 2.8vw, 30px);
+  border-image-slice: 100;
+  /* "stretch", not "round": the artwork is one continuous hand-drawn loop
+     sized to the whole box, not a tile to repeat around the perimeter. */
+  border-image-repeat: stretch;
+}
+
+.crayon-a {
+  border-image-source: url("/graphics/crayon-a.svg");
+}
+
+.crayon-b {
+  border-image-source: url("/graphics/crayon-b.svg");
+}
+
+.crayon-c {
+  border-image-source: url("/graphics/crayon-c.svg");
+}
+
+.crayon-d {
+  border-image-source: url("/graphics/crayon-d.svg");
+}
+
+.crayon-e {
+  border-image-source: url("/graphics/crayon-e.svg");
+}
+
+.pill-crayon-a,
+.pill-crayon-b,
+.pill-crayon-c,
+.pill-crayon-d,
+.pill-crayon-e {
+  border-style: solid;
+  border-width: 6px;
+  border-image-slice: 33;
+  border-image-repeat: stretch;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.pill-crayon-a {
+  border-image-source: url("/graphics/crayon-pill-a.svg");
+  color: var(--color-terracotta);
+}
+.pill-crayon-a:hover {
+  background-color: var(--color-terracotta);
+  color: var(--color-cream);
+}
+
+.pill-crayon-b {
+  border-image-source: url("/graphics/crayon-pill-b.svg");
+  color: var(--color-sage);
+}
+.pill-crayon-b:hover {
+  background-color: var(--color-sage);
+  color: var(--color-cream);
+}
+
+.pill-crayon-c {
+  border-image-source: url("/graphics/crayon-pill-c.svg");
+  color: var(--color-espresso);
+}
+.pill-crayon-c:hover {
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+}
+
+.pill-crayon-d {
+  border-image-source: url("/graphics/crayon-pill-d.svg");
+  color: var(--color-terracotta);
+}
+.pill-crayon-d:hover {
+  background-color: var(--color-terracotta);
+  color: var(--color-cream);
+}
+
+.pill-crayon-e {
+  border-image-source: url("/graphics/crayon-pill-e.svg");
+  color: var(--color-sage);
+}
+.pill-crayon-e:hover {
+  background-color: var(--color-sage);
+  color: var(--color-cream);
+}
+
+.pinned {
+  transform: rotate(var(--rot, 0deg));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pinned {
+    animation: pinned-sway 6s ease-in-out infinite;
+  }
+}
+
+@keyframes pinned-sway {
+  0%,
+  100% {
+    transform: rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: rotate(calc(var(--rot, 0deg) + 1.5deg));
+  }
+}

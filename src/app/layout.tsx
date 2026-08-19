@@ -28,7 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${anton.variable} ${baloo.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${anton.variable} ${baloo.variable} h-full scroll-smooth antialiased`}
+    >
       <body className="flex min-h-full flex-col bg-white font-body text-espresso">
         <Nav />
         <main className="flex-1">{children}</main>
