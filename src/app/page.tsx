@@ -439,9 +439,9 @@ const REVIEW_GROUPS: ReviewGroup[] = [
         rating: "★★★★★",
       },
       {
-        name: "— Natalie W.",
-        quote: "Tostilocos here put every gas-station version to shame — packed with fresh fruit and chamoy.",
-        rating: "★★★★☆",
+        name: "— Sidney W.",
+        quote: "The Dubai Strawberries and Smores Strawberries are some of the best snacks to re-fuel after the gym.",
+        rating: "★★★★★",
       },
     ],
   },
