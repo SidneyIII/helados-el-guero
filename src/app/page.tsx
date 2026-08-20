@@ -51,7 +51,7 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
         )}
 
         <div
-          className={`mt-10 grid gap-x-4 gap-y-10 ${
+          className={`mt-10 grid items-start gap-x-4 gap-y-10 ${
             single ? "mx-auto max-w-xs" : "sm:grid-cols-2"
           }`}
         >
