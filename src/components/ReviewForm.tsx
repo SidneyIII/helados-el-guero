@@ -1,25 +1,48 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig } from "@/lib/site-config";
 
-// No backend to store submissions, so "submitting" hands the visitor off to
-// their own email client with the review pre-filled instead of posting
-// somewhere -- a mailto link is the only reliable option on a static site.
+const WEB3FORMS_ACCESS_KEY = "ac436ca1-8ffd-4439-aee0-29a09f8259ee";
+
 export default function ReviewForm() {
   const [name, setName] = useState("");
   const [rating, setRating] = useState(5);
   const [review, setReview] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = `Review from ${name || "a customer"}`;
-    const body = `Rating: ${"★".repeat(rating)}${"☆".repeat(5 - rating)}\n\n${review}`;
-    window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setStatus("submitting");
+
+    try {
+      const formData = new FormData();
+      formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+      formData.append("subject", `New review from ${name || "a customer"}`);
+      formData.append("name", name);
+      formData.append("rating", `${rating} / 5 stars`);
+      formData.append("review", review);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      setStatus(data.success ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
   }
 
   const inputClasses =
     "mt-1 w-full rounded-md border border-espresso/20 bg-cream/50 px-3 py-2 font-body text-sm text-espresso placeholder:text-espresso/40 focus:border-terracotta focus:outline-none";
+
+  if (status === "success") {
+    return (
+      <p className="font-body text-sm text-espresso">
+        Thanks for the review, {name || "friend"}! We really appreciate it.
+      </p>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3 text-left">
@@ -71,10 +94,17 @@ export default function ReviewForm() {
 
       <button
         type="submit"
-        className="w-full rounded-full bg-terracotta px-4 py-2 font-body text-sm font-semibold text-cream transition-colors hover:bg-espresso"
+        disabled={status === "submitting"}
+        className="w-full rounded-full bg-terracotta px-4 py-2 font-body text-sm font-semibold text-cream transition-colors hover:bg-espresso disabled:opacity-60"
       >
-        Submit Review
+        {status === "submitting" ? "Sending..." : "Submit Review"}
       </button>
+
+      {status === "error" && (
+        <p className="font-body text-sm text-terracotta">
+          Something went wrong sending your review. Please try again.
+        </p>
+      )}
     </form>
   );
 }
