@@ -1,11 +1,18 @@
+"use client";
+
 import { siteConfig } from "@/lib/site-config";
+import { useLanguage } from "@/lib/language-context";
+import { translations } from "@/lib/translations";
 
 export default function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <footer className="border-t-2 border-espresso/10 bg-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-3">
         <div>
-          <p className="font-body text-sm font-semibold text-espresso">{siteConfig.tagline}</p>
+          <p className="font-body text-sm font-semibold text-espresso">{t.tagline}</p>
           <div className="mt-4 flex gap-4 font-body text-sm font-semibold text-terracotta">
             <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-espresso">
               Instagram
@@ -17,7 +24,7 @@ export default function Footer() {
         </div>
 
         <div className="font-body text-sm text-espresso/80">
-          <p className="font-semibold text-espresso">Visit Us</p>
+          <p className="font-semibold text-espresso">{t.footer.visitUs}</p>
           <p className="mt-2">{siteConfig.address.line1}</p>
           <p>{siteConfig.address.line2}</p>
           <p className="mt-2">
@@ -28,11 +35,11 @@ export default function Footer() {
         </div>
 
         <div className="font-body text-sm text-espresso/80">
-          <p className="font-semibold text-espresso">Hours</p>
+          <p className="font-semibold text-espresso">{t.footer.hours}</p>
           <ul className="mt-2 space-y-1">
             {siteConfig.hours.map((h) => (
               <li key={h.day} className="flex justify-between gap-4">
-                <span>{h.day}</span>
+                <span>{t.days[h.day]}</span>
                 <span>{h.time}</span>
               </li>
             ))}
@@ -42,11 +49,11 @@ export default function Footer() {
 
       <div className="border-t border-espresso/10 px-6 py-4 text-center font-body text-xs text-espresso/50">
         <p>
-          © {new Date().getFullYear()} {siteConfig.name}. Made with care in Council Bluffs, Iowa.
+          © {new Date().getFullYear()} {siteConfig.name}. {t.footer.madeWithCare}
         </p>
         <p className="mt-1">
           <a href="#contact" className="hover:text-terracotta">
-            Get in touch
+            {t.footer.getInTouch}
           </a>
         </p>
       </div>

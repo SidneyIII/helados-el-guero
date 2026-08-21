@@ -1,10 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/lib/language-context";
+import { translations } from "@/lib/translations";
 
 const WEB3FORMS_ACCESS_KEY = "ac436ca1-8ffd-4439-aee0-29a09f8259ee";
 
 export default function ReviewForm() {
+  const { language } = useLanguage();
+  const t = translations[language].reviewForm;
+
   const [name, setName] = useState("");
   const [rating, setRating] = useState(5);
   const [review, setReview] = useState("");
@@ -39,7 +44,7 @@ export default function ReviewForm() {
   if (status === "success") {
     return (
       <p className="font-body text-sm text-espresso">
-        Thanks for the review, {name || "friend"}! We really appreciate it.
+        {t.thanks}, {name || t.friend}! {t.thanksBody}
       </p>
     );
   }
@@ -48,20 +53,20 @@ export default function ReviewForm() {
     <form onSubmit={handleSubmit} className="space-y-3 text-left">
       <div>
         <label htmlFor="review-name" className="block font-body text-sm font-semibold text-espresso">
-          Name
+          {t.name}
         </label>
         <input
           id="review-name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Your name"
+          placeholder={t.namePlaceholder}
           required
           className={inputClasses}
         />
       </div>
 
       <div>
-        <span className="block font-body text-sm font-semibold text-espresso">Rating</span>
+        <span className="block font-body text-sm font-semibold text-espresso">{t.rating}</span>
         <div className="mt-1 flex gap-1 text-2xl text-terracotta">
           {[1, 2, 3, 4, 5].map((n) => (
             <button
@@ -79,14 +84,14 @@ export default function ReviewForm() {
 
       <div>
         <label htmlFor="review-text" className="block font-body text-sm font-semibold text-espresso">
-          Your review
+          {t.yourReview}
         </label>
         <textarea
           id="review-text"
           value={review}
           onChange={(e) => setReview(e.target.value)}
           rows={3}
-          placeholder="Tell us about your visit..."
+          placeholder={t.reviewPlaceholder}
           required
           className={inputClasses}
         />
@@ -97,13 +102,11 @@ export default function ReviewForm() {
         disabled={status === "submitting"}
         className="w-full rounded-full bg-terracotta px-4 py-2 font-body text-sm font-semibold text-cream transition-colors hover:bg-espresso disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending..." : "Submit Review"}
+        {status === "submitting" ? t.sending : t.submit}
       </button>
 
       {status === "error" && (
-        <p className="font-body text-sm text-terracotta">
-          Something went wrong sending your review. Please try again.
-        </p>
+        <p className="font-body text-sm text-terracotta">{t.error}</p>
       )}
     </form>
   );

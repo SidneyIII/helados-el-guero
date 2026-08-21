@@ -1,6 +1,5 @@
 export const siteConfig = {
   name: "Helados El Güero",
-  tagline: "Family-owned Mexican ice cream & antojitos in Council Bluffs",
   phone: "(712) 309-0004",
   email: "hello@heladoselguero.com",
   address: {
@@ -22,7 +21,6 @@ export const siteConfig = {
   },
   partner: {
     name: "La Carreta Rosa",
-    blurb: "Bold Mexican flavors, right next door in Council Bluffs.",
     social: {
       instagram: "https://instagram.com/",
       facebook: "https://facebook.com/",

@@ -3,6 +3,7 @@ import { Anton, Baloo_2 } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import { LanguageProvider } from "@/lib/language-context";
 import "./globals.css";
 
 const anton = Anton({
@@ -34,10 +35,12 @@ export default function RootLayout({
       className={`${anton.variable} ${baloo.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white font-body text-espresso">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <BackToTop />
+        <LanguageProvider>
+          <Nav />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <BackToTop />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import FadeInSection from "@/components/FadeInSection";
@@ -7,6 +9,8 @@ import StickyNote from "@/components/StickyNote";
 import ReviewForm from "@/components/ReviewForm";
 import { siteConfig } from "@/lib/site-config";
 import { MENU, type MenuCategory } from "@/lib/menu-data";
+import { useLanguage } from "@/lib/language-context";
+import { translations } from "@/lib/translations";
 
 // Small fixed set of tilt angles cycled by index so each pinned card/photo
 // reads as casually placed rather than perfectly repeating or random
@@ -21,6 +25,8 @@ const CRAYON_LETTERS = ["a", "b", "c", "d", "e"];
 const CRAYON_VARIANTS = CRAYON_LETTERS.map((letter) => `crayon-${letter}`);
 
 function MenuCategoryBlock({ category, index }: { category: MenuCategory; index: number }) {
+  const { language } = useLanguage();
+  const t = translations[language];
   const single = category.items.length === 1;
   const crayon = CRAYON_VARIANTS[index % CRAYON_VARIANTS.length];
   return (
@@ -28,10 +34,10 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
       <section id={category.id} className={`${crayon} scroll-mt-20 p-6 text-center md:p-7`}>
         <h3 className="flex items-center justify-center gap-3 font-display text-3xl text-espresso">
           <Tilde className="h-5 w-10 shrink-0" />
-          {category.title}
+          {category.title[language]}
           <Tilde flip className="h-5 w-10 shrink-0" />
         </h3>
-        <p className="mt-1 font-body text-espresso/70">{category.intro}</p>
+        <p className="mt-1 font-body text-espresso/70">{category.intro[language]}</p>
 
         {category.image && (
           <div
@@ -57,10 +63,10 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
           {category.items.map((item, ii) => {
             const tilt = TILTS[(index * 3 + ii) % TILTS.length];
             return (
-              <div key={item.name} className="relative" style={{ transform: `rotate(${tilt}deg)` }}>
+              <div key={item.name.en} className="relative" style={{ transform: `rotate(${tilt}deg)` }}>
                 {item.popular && (
                   <StickyNote
-                    label="Fan favorite!"
+                    label={t.menu.fanFavorite}
                     rotate={tilt > 0 ? -9 : 9}
                     className="-top-5 -right-3"
                   />
@@ -77,8 +83,8 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
                     />
                   )}
                   <div className="flex flex-1 flex-col items-center gap-1 p-5">
-                    <p className="font-display text-lg text-espresso">{item.name}</p>
-                    <p className="font-body text-sm text-espresso/70">{item.description}</p>
+                    <p className="font-display text-lg text-espresso">{item.name[language]}</p>
+                    <p className="font-body text-sm text-espresso/70">{item.description[language]}</p>
                     <p className="mt-1 font-body text-lg font-semibold text-terracotta">
                       {item.price}
                     </p>
@@ -93,42 +99,24 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
   );
 }
 
-type StoryItem = {
-  title: string;
-  imageLabel: string;
-  body: string;
-  image?: { src: string; alt: string };
-};
-
-const STORY_ITEMS: StoryItem[] = [
-  {
-    title: "How We Started",
-    imageLabel: "ribbon cutting, opening day",
-    body: "Two brothers, Alan and Victor, bought this building — once home to Isaac Arriaga's grocery store — to keep its community spirit alive. They opened La Carreta Rosa first, then Helados El Güero, carrying on Mexican culture and tradition for a new generation.",
-    image: { src: "/story/oldphoto.png", alt: "How we started" },
-  },
-  {
-    title: "Made With Family Recipes",
-    imageLabel: "the family, working together",
-    body: "Helados El Güero opened its doors on July 18, 2026, with a celebration to match the occasion. Alan and Victor's family came together for the ribbon cutting, with live music playing well into the evening.",
-    image: { src: "/story/grandopening.png", alt: "Made with family recipes" },
-  },
-  {
-    title: "More Than Ice Cream",
-    imageLabel: "live music night at the shop",
-    body: "Alan makes every batch of ice cream himself, using a recipe passed down through his family. Sharing it with the Council Bluffs community is his passion — a labor of love in every scoop.",
-  },
-  {
-    title: "Our Vision",
-    imageLabel: "serving the community, giving back",
-    body: "Our vision is to serve the community we grew up in and share the beauty of Mexican culture with everyone here — with discounts for CB teachers, CB students, and CB school alumni as a small way of giving back.",
-  },
+// Images (and which items even have one) live here, keyed by the same index
+// as translations.story.items -- title/imageLabel/body come from the
+// translations dictionary instead, so each language stays in sync from one
+// source without duplicating the image data per-language.
+const STORY_IMAGES: ({ src: string; alt: string } | undefined)[] = [
+  { src: "/story/oldphoto.png", alt: "How we started" },
+  { src: "/story/grandopening.png", alt: "Made with family recipes" },
+  undefined,
+  undefined,
 ];
 
 // Tilted-photo-plus-taped-card formation borrowed from the menu category
 // block, minus the crayon frame -- kept plain for now while this section is
 // still being experimented with.
-function StoryBlock({ item, index }: { item: StoryItem; index: number }) {
+function StoryBlock({ index }: { index: number }) {
+  const { language } = useLanguage();
+  const item = translations[language].story.items[index];
+  const image = STORY_IMAGES[index];
   const tilt = TILTS[index % TILTS.length];
   return (
     <FadeInSection>
@@ -143,10 +131,10 @@ function StoryBlock({ item, index }: { item: StoryItem; index: number }) {
           className="relative mx-auto mt-8 w-full max-w-md"
           style={{ transform: `rotate(${tilt}deg)` }}
         >
-          {item.image ? (
+          {image ? (
             <Image
-              src={item.image.src}
-              alt={item.image.alt}
+              src={image.src}
+              alt={image.alt}
               width={800}
               height={600}
               className="aspect-[4/3] w-full rounded-2xl object-cover"
@@ -311,8 +299,9 @@ function ZigzagCluster({ className = "", flip = false }: { className?: string; f
 }
 
 function ScrollArrow({ className = "" }: { className?: string }) {
+  const { language } = useLanguage();
   return (
-    <a href="#menu" aria-label="Scroll to menu" className={className}>
+    <a href="#menu" aria-label={translations[language].hero.scrollToMenu} className={className}>
       <span className="relative flex h-10 w-10 items-center justify-center">
         <span className="absolute inset-0 rounded-full bg-terracotta/50 blur-lg motion-safe:animate-pulse" />
         <svg
@@ -340,12 +329,14 @@ const OSM_EMBED_SRC = `https://www.openstreetmap.org/export/embed.html?bbox=${SH
 // plain one-off block instead of a generic list item -- no tilt, no tape,
 // no card, just the map centered and the address as a plain caption below.
 function FindUsBlock() {
+  const { language } = useLanguage();
+  const t = translations[language].findUs;
   return (
     <FadeInSection className="w-full">
       <section className="px-6 pb-6 text-center md:px-10 md:pb-10">
         <h3 className="flex items-center justify-center gap-4 font-display text-3xl text-espresso md:text-4xl">
           <Tilde className="h-6 w-12 shrink-0" />
-          Find Us
+          {t.heading}
           <Tilde flip className="h-6 w-12 shrink-0" />
         </h3>
 
@@ -354,16 +345,14 @@ function FindUsBlock() {
             src={OSM_EMBED_SRC}
             className="h-full w-full border-0"
             loading="lazy"
-            title="Map to Helados El Güero"
+            title={t.mapTitle}
           />
         </div>
 
         <p className="mt-6 font-body text-base text-espresso">
           {siteConfig.address.line1}, {siteConfig.address.line2}
         </p>
-        <p className="font-body text-base text-espresso">
-          Mon–Thu, Sun: 12:00 PM – 9:00 PM · Fri–Sat: 12:00 PM – 10:00 PM
-        </p>
+        <p className="font-body text-base text-espresso">{t.hours}</p>
       </section>
     </FadeInSection>
   );
@@ -488,6 +477,8 @@ const REVIEW_GROUPS: ReviewGroup[] = [
 // crayon box, same taped item-card grid, just re-themed from menu items to
 // reviews and with the label stripped off.
 function ReviewGroupBlock({ group, index }: { group: ReviewGroup; index: number }) {
+  const { language } = useLanguage();
+  const t = translations[language];
   const single = group.items.length === 1;
   const crayon = CRAYON_VARIANTS[index % CRAYON_VARIANTS.length];
   return (
@@ -512,7 +503,7 @@ function ReviewGroupBlock({ group, index }: { group: ReviewGroup; index: number 
               >
                 {item.featured && (
                   <StickyNote
-                    label="Loyal regular!"
+                    label={t.reviews.loyalRegular}
                     rotate={tilt > 0 ? -9 : 9}
                     className="-top-5 -right-3"
                   />
@@ -537,6 +528,8 @@ function ReviewGroupBlock({ group, index }: { group: ReviewGroup; index: number 
 }
 
 export default function Home() {
+  const { language } = useLanguage();
+  const t = translations[language];
   return (
     <div>
       <div className="flex min-h-[calc(100vh-46px)] flex-col md:min-h-[calc(100vh-62px)]">
@@ -553,10 +546,7 @@ export default function Home() {
 
           <div className="mx-auto flex max-w-2xl flex-col items-center px-6 pt-0 pb-6 text-center md:pt-1 md:pb-8">
             <FadeInSection>
-              <h1 className="sr-only">
-                Helados El Güero — Family-Owned Mexican Ice Cream &amp; Antojitos in Council
-                Bluffs, Iowa
-              </h1>
+              <h1 className="sr-only">{t.hero.srHeading}</h1>
               <Image
                 src="/logo.jpg"
                 alt="Helados El Güero logo"
@@ -576,19 +566,21 @@ export default function Home() {
         <section className="bg-terracotta">
           <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 text-center md:grid-cols-3">
             <div>
-              <p className="font-display text-lg text-cream">Hours</p>
-              <p className="mt-1 font-body text-cream/90">Mon–Thu, Sun: 12PM–9PM</p>
-              <p className="font-body text-cream/90">Fri–Sat: 12PM–10PM</p>
+              <p className="font-display text-lg text-cream">{t.quickInfo.hours}</p>
+              <p className="mt-1 font-body text-cream/90">{t.quickInfo.hoursLine1}</p>
+              <p className="font-body text-cream/90">{t.quickInfo.hoursLine2}</p>
             </div>
             <div>
-              <p className="font-display text-lg text-cream">Location</p>
+              <p className="font-display text-lg text-cream">{t.quickInfo.location}</p>
               <p className="mt-1 font-body text-cream/90">
                 {siteConfig.address.line1}, {siteConfig.address.line2}
               </p>
             </div>
             <div>
-              <p className="font-display text-lg text-cream">Contact</p>
-              <p className="mt-1 font-body text-cream/90">{siteConfig.phone} • Email: TBD</p>
+              <p className="font-display text-lg text-cream">{t.quickInfo.contact}</p>
+              <p className="mt-1 font-body text-cream/90">
+                {siteConfig.phone} • {t.quickInfo.emailTBD}
+              </p>
               <p className="mt-1 font-body text-cream/90">
                 <a
                   href={siteConfig.social.facebook}
@@ -620,10 +612,8 @@ export default function Home() {
       >
         <div className="mx-auto max-w-[96rem] px-6">
           <FadeInSection className="text-center">
-            <h2 className="font-display text-5xl text-espresso">Our Menu</h2>
-            <p className="mt-3 font-body text-espresso/70">
-              Everything made fresh, in-house, every day. Prices and flavors may vary seasonally.
-            </p>
+            <h2 className="font-display text-5xl text-espresso">{t.menu.heading}</h2>
+            <p className="mt-3 font-body text-espresso/70">{t.menu.subheading}</p>
             <nav className="mt-8 flex flex-wrap justify-center gap-3 font-body text-sm font-semibold">
               {MENU.map((category, i) => (
                 <a
@@ -631,7 +621,7 @@ export default function Home() {
                   href={`#${category.id}`}
                   className={`pill-crayon-${CRAYON_LETTERS[i % CRAYON_LETTERS.length]} px-4 py-2`}
                 >
-                  {category.title}
+                  {category.title[language]}
                 </a>
               ))}
             </nav>
@@ -664,16 +654,14 @@ export default function Home() {
       {/* Order for Delivery */}
       <FadeInSection className="bg-terracotta">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-10 text-center">
-          <h2 className="font-display text-3xl text-cream">Order for Delivery</h2>
-          <p className="max-w-md font-body text-cream/90">
-            Can&apos;t make it in? Delivery through DoorDash and GrubHub is on the way.
-          </p>
+          <h2 className="font-display text-3xl text-cream">{t.delivery.heading}</h2>
+          <p className="max-w-md font-body text-cream/90">{t.delivery.body}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <span className="inline-flex items-center justify-center rounded-full bg-cream px-6 py-3 font-body font-semibold text-terracotta">
-              DoorDash - TBD
+              {t.delivery.doordash}
             </span>
             <span className="inline-flex items-center justify-center rounded-full bg-cream px-6 py-3 font-body font-semibold text-terracotta">
-              GrubHub - TBD
+              {t.delivery.grubhub}
             </span>
           </div>
         </div>
@@ -683,20 +671,16 @@ export default function Home() {
       <section id="about" className="scroll-mt-20 bg-cream py-16">
         <div className="mx-auto max-w-[96rem] px-6">
           <FadeInSection className="text-center">
-            <h2 className="font-display text-5xl text-espresso">Our Story</h2>
-            <p className="mx-auto mt-3 max-w-3xl font-body text-espresso/70">
-              Helados El Güero started with one family, one cart, and recipes passed down for
-              generations. Today we&apos;re still family-run — same recipes, same care, now with a
-              home of our own in Council Bluffs.
-            </p>
+            <h2 className="font-display text-5xl text-espresso">{t.story.heading}</h2>
+            <p className="mx-auto mt-3 max-w-3xl font-body text-espresso/70">{t.story.body}</p>
           </FadeInSection>
 
           {/* No individual boxes -- one big hand-drawn "+" through the
               middle keeps the four items apart instead. */}
           <div className="relative mt-16">
             <div className="grid grid-cols-1 gap-x-16 gap-y-12 lg:grid-cols-2 lg:gap-x-20 lg:gap-y-16">
-              {STORY_ITEMS.map((item, i) => (
-                <StoryBlock key={item.title} item={item} index={i} />
+              {STORY_IMAGES.map((_, i) => (
+                <StoryBlock key={i} index={i} />
               ))}
             </div>
             <StoryCross className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block" />
@@ -708,15 +692,15 @@ export default function Home() {
       <section className="bg-terracotta">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 text-center md:grid-cols-3">
           <div>
-            <p className="font-display text-lg text-cream">Our Partner Restaurant</p>
+            <p className="font-display text-lg text-cream">{t.partner.restaurant}</p>
             <p className="mt-1 font-body text-cream/90">{siteConfig.partner.name}</p>
           </div>
           <div>
-            <p className="font-display text-lg text-cream">Right Next Door</p>
-            <p className="mt-1 font-body text-cream/90">{siteConfig.partner.blurb}</p>
+            <p className="font-display text-lg text-cream">{t.partner.nextDoor}</p>
+            <p className="mt-1 font-body text-cream/90">{t.partner.blurb}</p>
           </div>
           <div>
-            <p className="font-display text-lg text-cream">Follow Them</p>
+            <p className="font-display text-lg text-cream">{t.partner.followThem}</p>
             <p className="mt-1 font-body text-cream/90">
               <a
                 href={siteConfig.partner.social.instagram}
@@ -763,12 +747,10 @@ export default function Home() {
               <section className="w-full p-6 text-center md:p-10">
                 <h3 className="flex items-center justify-center gap-4 font-display text-3xl text-espresso md:text-4xl">
                   <Tilde className="h-6 w-12 shrink-0" />
-                  Leave a Review
+                  {t.reviews.heading}
                   <Tilde flip className="h-6 w-12 shrink-0" />
                 </h3>
-                <p className="mt-3 font-body text-espresso/70">
-                  A few words from people who&apos;ve already stopped by.
-                </p>
+                <p className="mt-3 font-body text-espresso/70">{t.reviews.subheading}</p>
 
                 {/* CSS masonry (`columns`) computes its own left/right split
                     from rendered heights, and that came out differently
@@ -800,7 +782,7 @@ export default function Home() {
                         >
                           <Tape rotate={-8} className="-top-2.5 left-1/2 h-5 w-14 -translate-x-1/2" />
                           <div className="rounded-xl border-2 border-espresso/10 bg-white p-6 shadow-md">
-                            <p className="font-display text-lg text-espresso">Share Your Experience</p>
+                            <p className="font-display text-lg text-espresso">{t.reviews.shareExperience}</p>
                             <div className="mt-4">
                               <ReviewForm />
                             </div>
@@ -813,10 +795,7 @@ export default function Home() {
               </section>
             </div>
 
-            <p className="mt-16 text-center font-body text-sm text-espresso/60">
-              Planning something bigger? For catering or large orders, call or email us
-              directly — we&apos;ll take care of you.
-            </p>
+            <p className="mt-16 text-center font-body text-sm text-espresso/60">{t.catering}</p>
           </div>
         </div>
       </section>
