@@ -619,16 +619,26 @@ export default function Home() {
             </nav>
           </FadeInSection>
 
-          {/* CSS multi-column instead of a grid: a grid row-locks every
-              column to its tallest cell, which is exactly what left blank
-              space under short categories like Paletas. Columns let each
-              category flow into whichever column has room next. */}
-          <div className="mt-16 columns-1 gap-x-12 md:columns-2">
-            {MENU.map((category, i) => (
-              <div key={category.id} className="mb-16 break-inside-avoid">
-                <MenuCategoryBlock category={category} index={i} />
-              </div>
-            ))}
+          {/* Two explicit, fixed columns instead of CSS `columns` -- auto-balancing
+              columns re-run their height calculation on every render (any viewport
+              width change, font load, or a category growing taller), which could
+              silently reshuffle which category lands in which column. A hardcoded
+              split can't ever reshuffle. */}
+          <div className="mt-16 grid grid-cols-1 gap-x-12 md:grid-cols-2">
+            <div>
+              {MENU.slice(0, 4).map((category, i) => (
+                <div key={category.id} className="mb-16">
+                  <MenuCategoryBlock category={category} index={i} />
+                </div>
+              ))}
+            </div>
+            <div>
+              {MENU.slice(4).map((category, i) => (
+                <div key={category.id} className="mb-16">
+                  <MenuCategoryBlock category={category} index={i + 4} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
