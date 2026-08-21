@@ -3,7 +3,7 @@ export const siteConfig = {
   phone: "(712) 309-0004",
   email: "hello@heladoselguero.com",
   address: {
-    line1: "620 South Main Street",
+    line1: "622 South Main Street",
     line2: "Council Bluffs, IA 51501",
   },
   hours: [

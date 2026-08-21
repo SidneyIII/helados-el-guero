@@ -318,7 +318,7 @@ function ScrollArrow({ className = "" }: { className?: string }) {
   );
 }
 
-// Real coordinates for 620 South Main Street, Council Bluffs, IA 51501
+// Real coordinates for 622 South Main Street, Council Bluffs, IA 51501
 // (geocoded via OpenStreetMap's Nominatim) -- power the free, no-API-key
 // embedded map on the Visit Us "Find Us" card below.
 const SHOP_LAT = 41.2552947;
@@ -672,7 +672,6 @@ export default function Home() {
         <div className="mx-auto max-w-[96rem] px-6">
           <FadeInSection className="text-center">
             <h2 className="font-display text-5xl text-espresso">{t.story.heading}</h2>
-            <p className="mx-auto mt-3 max-w-3xl font-body text-espresso/70">{t.story.body}</p>
           </FadeInSection>
 
           {/* No individual boxes -- one big hand-drawn "+" through the

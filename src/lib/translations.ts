@@ -34,7 +34,6 @@ export const translations = {
     },
     story: {
       heading: "Our Story",
-      body: "Helados El Güero started with one family, one cart, and recipes passed down for generations. Today we're still family-run — same recipes, same care, now with a home of our own in Council Bluffs.",
       items: [
         {
           title: "How We Started",
@@ -143,7 +142,6 @@ export const translations = {
     },
     story: {
       heading: "Nuestra Historia",
-      body: "Helados El Güero comenzó con una familia, un carrito y recetas heredadas por generaciones. Hoy seguimos siendo un negocio familiar — las mismas recetas, el mismo cuidado, ahora con un hogar propio en Council Bluffs.",
       items: [
         {
           title: "Cómo Empezamos",
