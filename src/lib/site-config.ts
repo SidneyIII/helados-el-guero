@@ -17,8 +17,8 @@ export const siteConfig = {
     { day: "Sunday", time: "12:00 PM – 9:00 PM" },
   ],
   social: {
-    instagram: "https://instagram.com/",
-    facebook: "https://facebook.com/",
+    instagram: "https://www.instagram.com/helados.elguero/",
+    facebook: "https://www.facebook.com/profile.php?id=61583905591192",
   },
   partner: {
     name: "La Carreta Rosa",

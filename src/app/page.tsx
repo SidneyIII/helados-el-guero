@@ -589,6 +589,25 @@ export default function Home() {
             <div>
               <p className="font-display text-lg text-cream">Contact</p>
               <p className="mt-1 font-body text-cream/90">{siteConfig.phone} • Email: TBD</p>
+              <p className="mt-1 font-body text-cream/90">
+                <a
+                  href={siteConfig.social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-cream/70"
+                >
+                  Facebook
+                </a>
+                {" • "}
+                <a
+                  href={siteConfig.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-cream/70"
+                >
+                  Instagram
+                </a>
+              </p>
             </div>
           </div>
         </section>
