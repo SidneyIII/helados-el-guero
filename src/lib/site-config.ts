@@ -20,13 +20,9 @@ export const siteConfig = {
     instagram: "https://instagram.com/",
     facebook: "https://facebook.com/",
   },
-  order: {
-    doordash: "https://www.doordash.com/",
-    grubhub: "https://www.grubhub.com/",
-  },
   partner: {
     name: "La Carreta Rosa",
-    blurb: "Bold Mexican flavors, just down the road in Council Bluffs.",
+    blurb: "Bold Mexican flavors, right next door in Council Bluffs.",
     social: {
       instagram: "https://instagram.com/",
       facebook: "https://facebook.com/",

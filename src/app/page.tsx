@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Button from "@/components/Button";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import FadeInSection from "@/components/FadeInSection";
 import Tilde from "@/components/Tilde";
@@ -632,7 +631,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div>
+            <div className="mt-16 md:mt-14">
               {MENU.slice(4).map((category, i) => (
                 <div key={category.id} className="mb-16">
                   <MenuCategoryBlock category={category} index={i + 4} />
@@ -648,15 +647,15 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-10 text-center">
           <h2 className="font-display text-3xl text-cream">Order for Delivery</h2>
           <p className="max-w-md font-body text-cream/90">
-            Can&apos;t make it in? Order Helados El Güero through DoorDash or Grubhub.
+            Can&apos;t make it in? Delivery through DoorDash and GrubHub is on the way.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button href={siteConfig.order.doordash} external variant="inverse">
-              Order on DoorDash
-            </Button>
-            <Button href={siteConfig.order.grubhub} external variant="inverse">
-              Order on Grubhub
-            </Button>
+            <span className="inline-flex items-center justify-center rounded-full bg-cream px-6 py-3 font-body font-semibold text-terracotta">
+              DoorDash - TBD
+            </span>
+            <span className="inline-flex items-center justify-center rounded-full bg-cream px-6 py-3 font-body font-semibold text-terracotta">
+              GrubHub - TBD
+            </span>
           </div>
         </div>
       </FadeInSection>
@@ -694,7 +693,7 @@ export default function Home() {
             <p className="mt-1 font-body text-cream/90">{siteConfig.partner.name}</p>
           </div>
           <div>
-            <p className="font-display text-lg text-cream">Just Down the Road</p>
+            <p className="font-display text-lg text-cream">Right Next Door</p>
             <p className="mt-1 font-body text-cream/90">{siteConfig.partner.blurb}</p>
           </div>
           <div>
