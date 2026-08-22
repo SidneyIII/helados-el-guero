@@ -143,7 +143,7 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
 const STORY_IMAGES: ({ src: string; alt: string } | undefined)[] = [
   { src: "/story/oldphoto.png", alt: "How we started" },
   { src: "/story/grandopening.png", alt: "Made with family recipes" },
-  undefined,
+  { src: "/story/heladosimage.jpg", alt: "Fresh ice cream flavors in the case" },
   { src: "/story/backpacks.jpg", alt: "Backpacks and school supplies collected for our back-to-school drive" },
 ];
 
