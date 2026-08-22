@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import FadeInSection from "@/components/FadeInSection";
@@ -7,6 +8,7 @@ import Tilde from "@/components/Tilde";
 import Tape from "@/components/Tape";
 import StickyNote from "@/components/StickyNote";
 import ReviewForm from "@/components/ReviewForm";
+import HeladosFlavorsModal from "@/components/HeladosFlavorsModal";
 import { siteConfig } from "@/lib/site-config";
 import { MENU, type MenuCategory } from "@/lib/menu-data";
 import { useLanguage } from "@/lib/language-context";
@@ -29,6 +31,8 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
   const t = translations[language];
   const single = category.items.length === 1;
   const crayon = CRAYON_VARIANTS[index % CRAYON_VARIANTS.length];
+  const isHelados = category.id === "helados";
+  const [flavorsOpen, setFlavorsOpen] = useState(false);
   return (
     <FadeInSection>
       <section id={category.id} className={`${crayon} scroll-mt-20 p-6 text-center md:p-7`}>
@@ -39,21 +43,54 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
         </h3>
         <p className="mt-1 font-body text-espresso/70">{category.intro[language]}</p>
 
-        {category.image && (
-          <div
-            className="relative mx-auto mt-8 w-full max-w-xs"
-            style={{ transform: `rotate(${TILTS[index % TILTS.length]}deg)` }}
-          >
-            <Image
-              src={category.image.src}
-              alt={category.image.alt}
-              width={800}
-              height={600}
-              className="h-auto w-full rounded-lg border-[6px] border-white object-cover shadow-lg"
-            />
-            <Tape rotate={-12} className="-top-3 -left-4 h-6 w-16" />
-          </div>
-        )}
+        {category.image &&
+          (isHelados ? (
+            <>
+              <button
+                type="button"
+                onClick={() => setFlavorsOpen(true)}
+                className="group relative mx-auto mt-8 block w-full max-w-xs cursor-pointer"
+                style={{ transform: `rotate(${TILTS[index % TILTS.length]}deg)` }}
+              >
+                <span className="absolute -inset-3 rounded-2xl bg-terracotta/25 opacity-70 blur-xl transition-opacity group-hover:opacity-100" />
+                <Image
+                  src={category.image.src}
+                  alt={category.image.alt}
+                  width={800}
+                  height={600}
+                  className="relative h-auto w-full rounded-lg border-[6px] border-white object-cover shadow-lg transition-transform group-hover:scale-[1.02]"
+                />
+                <Tape rotate={-12} className="-top-3 -left-4 h-6 w-16" />
+              </button>
+              <div className="mt-3 flex items-center justify-center gap-1.5 font-body text-sm font-semibold text-terracotta">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  className="h-4 w-4 rotate-180"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+                {t.flavors.caption}
+              </div>
+              <HeladosFlavorsModal open={flavorsOpen} onClose={() => setFlavorsOpen(false)} />
+            </>
+          ) : (
+            <div
+              className="relative mx-auto mt-8 w-full max-w-xs"
+              style={{ transform: `rotate(${TILTS[index % TILTS.length]}deg)` }}
+            >
+              <Image
+                src={category.image.src}
+                alt={category.image.alt}
+                width={800}
+                height={600}
+                className="h-auto w-full rounded-lg border-[6px] border-white object-cover shadow-lg"
+              />
+              <Tape rotate={-12} className="-top-3 -left-4 h-6 w-16" />
+            </div>
+          ))}
 
         <div
           className={`mt-10 grid items-start gap-x-4 gap-y-10 ${

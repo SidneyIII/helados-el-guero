@@ -16,6 +16,25 @@ export type MenuCategory = {
   image?: { src: string; alt: string };
 };
 
+// Ice cream flavors shown in the "Helados" flavors popup -- not tied to any
+// one item's price/description, just the full list of what's scoopable.
+export const HELADO_FLAVORS: LocalizedText[] = [
+  { en: "Bubblegum (Chicle)", es: "Chicle" },
+  { en: "Strawberry (milk base)", es: "Fresa (base de leche)" },
+  { en: "Strawberry (water base)", es: "Fresa (base de agua)" },
+  { en: "Lime", es: "Limón" },
+  { en: "Chocolate (Mexican hot chocolate)", es: "Chocolate (chocolate mexicano)" },
+  { en: "Vanilla", es: "Vainilla" },
+  { en: "Pineapple", es: "Piña" },
+  { en: "Mango", es: "Mango" },
+  { en: "Pine Nut (Piñón)", es: "Piñón" },
+  { en: "Pecan (Nuez)", es: "Nuez" },
+  { en: "Cookies and Cream", es: "Galletas con Crema" },
+  { en: "Guava", es: "Guayaba" },
+  { en: "Dragonfruit", es: "Pitahaya" },
+  { en: "Gansito", es: "Gansito" },
+];
+
 // Prices and item names below are pulled directly from the shop's POS
 // listing -- anything not on that list (Chamoyada, Gansito Helado) is left
 // at its prior placeholder price since it isn't verified yet.

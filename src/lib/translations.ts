@@ -26,6 +26,11 @@ export const translations = {
         "Everything made fresh, in-house, every day. Prices and flavors may vary seasonally.",
       fanFavorite: "Fan favorite!",
     },
+    flavors: {
+      caption: "Click here to view flavors",
+      modalTitle: "Our Flavors",
+      close: "Close",
+    },
     delivery: {
       heading: "Order for Delivery",
       body: "Can't make it in? Delivery through DoorDash and GrubHub is on the way.",
@@ -133,6 +138,11 @@ export const translations = {
       subheading:
         "Todo hecho fresco, en casa, todos los días. Precios y sabores pueden variar según la temporada.",
       fanFavorite: "¡Favorito de la casa!",
+    },
+    flavors: {
+      caption: "Haz clic para ver los sabores",
+      modalTitle: "Nuestros Sabores",
+      close: "Cerrar",
     },
     delivery: {
       heading: "Pide a Domicilio",
