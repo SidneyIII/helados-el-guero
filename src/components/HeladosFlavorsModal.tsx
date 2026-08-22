@@ -66,7 +66,7 @@ export default function HeladosFlavorsModal({
           {HELADO_FLAVORS.map((flavor, i) => (
             <li key={flavor.en} className="flex justify-center">
               <span
-                className={`${PILL_COLORS[i % PILL_COLORS.length]} inline-block rounded-full px-4 py-1.5 font-body text-sm font-semibold`}
+                className={`${PILL_COLORS[i % PILL_COLORS.length]} flex items-center justify-center rounded-full px-4 py-1.5 text-center font-body text-sm font-semibold`}
               >
                 {flavor[language]}
               </span>

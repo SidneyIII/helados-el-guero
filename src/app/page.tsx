@@ -52,7 +52,7 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
                 className="group relative mx-auto mt-8 block w-full max-w-xs cursor-pointer"
                 style={{ transform: `rotate(${TILTS[index % TILTS.length]}deg)` }}
               >
-                <span className="absolute -inset-4 rounded-2xl bg-terracotta/45 opacity-90 blur-xl transition-opacity group-hover:opacity-100" />
+                <span className="absolute -inset-4 rounded-2xl bg-sage/45 opacity-90 blur-xl transition-opacity group-hover:opacity-100" />
                 <Image
                   src={category.image.src}
                   alt={category.image.alt}
