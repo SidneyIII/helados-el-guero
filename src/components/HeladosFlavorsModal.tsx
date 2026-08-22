@@ -6,6 +6,11 @@ import { HELADO_FLAVORS } from "@/lib/menu-data";
 import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
 
+// Cycles through the site's three crayon-pill colors (terracotta, sage,
+// espresso) -- the same "red-orange, green, black" palette used for the
+// menu's jump-link pills.
+const PILL_COLORS = ["pill-crayon-a", "pill-crayon-b", "pill-crayon-c"];
+
 export default function HeladosFlavorsModal({
   open,
   onClose,
@@ -57,14 +62,14 @@ export default function HeladosFlavorsModal({
 
         <p className="font-display text-2xl text-espresso">{t.modalTitle}</p>
 
-        <ul className="mt-5 grid grid-cols-1 gap-x-6 gap-y-2 text-left sm:grid-cols-2">
-          {HELADO_FLAVORS.map((flavor) => (
-            <li
-              key={flavor.en}
-              className="flex items-start gap-2 font-body text-sm text-espresso/80"
-            >
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-terracotta" />
-              {flavor[language]}
+        <ul className="mt-5 grid grid-cols-1 gap-x-3 gap-y-3 sm:grid-cols-2">
+          {HELADO_FLAVORS.map((flavor, i) => (
+            <li key={flavor.en} className="flex justify-center">
+              <span
+                className={`${PILL_COLORS[i % PILL_COLORS.length]} inline-block rounded-full px-4 py-1.5 font-body text-sm font-semibold`}
+              >
+                {flavor[language]}
+              </span>
             </li>
           ))}
         </ul>
