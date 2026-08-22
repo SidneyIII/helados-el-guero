@@ -144,7 +144,7 @@ const STORY_IMAGES: ({ src: string; alt: string } | undefined)[] = [
   { src: "/story/oldphoto.png", alt: "How we started" },
   { src: "/story/grandopening.png", alt: "Made with family recipes" },
   undefined,
-  undefined,
+  { src: "/story/backpacks.jpg", alt: "Backpacks and school supplies collected for our back-to-school drive" },
 ];
 
 // Tilted-photo-plus-taped-card formation borrowed from the menu category

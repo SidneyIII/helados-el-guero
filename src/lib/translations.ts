@@ -58,7 +58,7 @@ export const translations = {
         {
           title: "Our Vision",
           imageLabel: "serving the community, giving back",
-          body: "Our vision is to serve the community we grew up in and share the beauty of Mexican culture with everyone here — with discounts for CB teachers, CB students, and CB school alumni as a small way of giving back.",
+          body: "Our vision is to serve the community we grew up in and share the beauty of Mexican culture with everyone here — with discounts for CB teachers, CB students, and CB school alumni as a small way of giving back. We also host back-to-school drives, collecting backpacks and supplies for local kids in need.",
         },
       ],
     },
@@ -171,7 +171,7 @@ export const translations = {
         {
           title: "Nuestra Visión",
           imageLabel: "sirviendo a la comunidad, retribuyendo",
-          body: "Nuestra visión es servir a la comunidad en la que crecimos y compartir la belleza de la cultura mexicana con todos aquí — con descuentos para maestros, estudiantes y exalumnos de las escuelas de Council Bluffs, como una pequeña forma de retribuir.",
+          body: "Nuestra visión es servir a la comunidad en la que crecimos y compartir la belleza de la cultura mexicana con todos aquí — con descuentos para maestros, estudiantes y exalumnos de las escuelas de Council Bluffs, como una pequeña forma de retribuir. También organizamos colectas escolares, reuniendo mochilas y útiles para niños de la comunidad que los necesitan.",
         },
       ],
     },
