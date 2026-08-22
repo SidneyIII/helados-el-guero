@@ -163,3 +163,81 @@ body {
     transform: rotate(calc(var(--rot, 0deg) + 1.5deg));
   }
 }
+
+/* Plain semantic markup for the Privacy Policy / Terms pages -- styled here
+   instead of repeating utility classes on every element, since these are
+   long-form text pages rather than the hand-built layouts used elsewhere. */
+.legal-copy h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-terracotta);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.legal-copy h2:first-child {
+  margin-top: 0;
+}
+
+.legal-copy h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-espresso);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-copy p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.legal-copy ol,
+.legal-copy ul {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.legal-copy ol {
+  list-style-type: decimal;
+}
+
+.legal-copy ul {
+  list-style-type: disc;
+}
+
+.legal-copy li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.legal-copy li > ol,
+.legal-copy li > ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-copy a {
+  color: var(--color-terracotta);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-copy a:hover {
+  color: var(--color-espresso);
+}
+
+.legal-copy strong {
+  font-weight: 700;
+  color: var(--color-espresso);
+}
+
+.legal-copy .legal-note {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(43, 33, 26, 0.1);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: rgba(43, 33, 26, 0.6);
+}

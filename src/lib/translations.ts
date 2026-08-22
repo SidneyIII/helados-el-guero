@@ -97,6 +97,8 @@ export const translations = {
       hours: "Hours",
       madeWithCare: "Made with care in Council Bluffs, Iowa.",
       getInTouch: "Get in touch",
+      privacyPolicy: "Privacy Policy",
+      terms: "Terms & Conditions",
     },
     catering:
       "Planning something bigger? For catering or large orders, call or email us directly — we'll take care of you.",
@@ -210,6 +212,8 @@ export const translations = {
       hours: "Horario",
       madeWithCare: "Hecho con cariño en Council Bluffs, Iowa.",
       getInTouch: "Contáctanos",
+      privacyPolicy: "Política de Privacidad",
+      terms: "Términos y Condiciones",
     },
     catering:
       "¿Planeando algo más grande? Para catering o pedidos grandes, llámanos o escríbenos directamente — nosotros nos encargamos.",

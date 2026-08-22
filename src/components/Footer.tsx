@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
@@ -55,6 +56,14 @@ export default function Footer() {
           <a href="#contact" className="hover:text-terracotta">
             {t.footer.getInTouch}
           </a>
+        </p>
+        <p className="mt-3 flex justify-center gap-4">
+          <Link href="/privacy-policy" className="hover:text-terracotta">
+            {t.footer.privacyPolicy}
+          </Link>
+          <Link href="/terms" className="hover:text-terracotta">
+            {t.footer.terms}
+          </Link>
         </p>
       </div>
     </footer>
