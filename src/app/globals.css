@@ -232,12 +232,3 @@ body {
   font-weight: 700;
   color: var(--color-espresso);
 }
-
-.legal-copy .legal-note {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid rgba(43, 33, 26, 0.1);
-  font-style: italic;
-  font-size: 0.875rem;
-  color: rgba(43, 33, 26, 0.6);
-}

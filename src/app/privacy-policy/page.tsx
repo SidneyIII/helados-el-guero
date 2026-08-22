@@ -135,13 +135,6 @@ export default function PrivacyPolicyPage() {
         <br />
         Email: hello@heladoselguero.com
       </p>
-
-      <p className="legal-note">
-        This document was drafted with the assistance of AI as a starting template for a small
-        local business and has not been reviewed by an attorney. It is not a substitute for legal
-        advice, and Helados El Güero should have it reviewed by a licensed attorney familiar with
-        Iowa law before relying on it.
-      </p>
     </LegalPageShell>
   );
 }
