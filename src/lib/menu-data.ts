@@ -273,14 +273,12 @@ export const MENU: MenuCategory[] = [
         price: "$9.00",
       },
       {
-        name: { en: "Dubai Strawberries", es: "Fresas Dubái" },
+        name: { en: "Fresona", es: "Fresona" },
         description: {
-          en: "Chocolate-dipped strawberries with pistachio kunafa.",
-          es: "Fresas cubiertas de chocolate con kunafa de pistache.",
+          en: "Jumbo stuffed strawberry dessert.",
+          es: "Postre de fresa gigante rellena.",
         },
-        price: "$10.00",
-        popular: true,
-        image: { src: "/menu/dubaichoc.png", alt: "Dubai Strawberries" },
+        price: "$12.00",
       },
       {
         name: { en: "Smores Strawberries", es: "Fresas Smores" },
@@ -293,12 +291,14 @@ export const MENU: MenuCategory[] = [
         image: { src: "/menu/smorestraw-focus.jpg", alt: "Smores Strawberries" },
       },
       {
-        name: { en: "Fresona", es: "Fresona" },
+        name: { en: "Dubai Strawberries", es: "Fresas Dubái" },
         description: {
-          en: "Jumbo stuffed strawberry dessert.",
-          es: "Postre de fresa gigante rellena.",
+          en: "Chocolate-dipped strawberries with pistachio kunafa.",
+          es: "Fresas cubiertas de chocolate con kunafa de pistache.",
         },
-        price: "$12.00",
+        price: "$10.00",
+        popular: true,
+        image: { src: "/menu/dubaichoc.png", alt: "Dubai Strawberries" },
       },
       {
         name: { en: "Frutas Del Dia", es: "Frutas Del Día" },
