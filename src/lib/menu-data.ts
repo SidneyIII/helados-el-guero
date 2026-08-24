@@ -244,15 +244,15 @@ export const MENU: MenuCategory[] = [
         price: "$4.00",
       },
       {
+        name: { en: "Chorreada", es: "Chorreada" },
+        description: { en: "", es: "" },
+        price: "$14.00",
+      },
+      {
         name: { en: "Elote Fuego", es: "Elote Fuego" },
         description: { en: "Grilled corn on the cob, extra spicy.", es: "Elote asado, extra picante." },
         price: "$6.00",
         image: { src: "/menu/elote.jpg", alt: "Elote Fuego" },
-      },
-      {
-        name: { en: "Chorreada", es: "Chorreada" },
-        description: { en: "", es: "" },
-        price: "$14.00",
       },
     ],
   },
