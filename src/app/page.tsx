@@ -30,7 +30,6 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
   const { language } = useLanguage();
   const t = translations[language];
   const single = category.items.length === 1;
-  const lastOddIndex = category.items.length % 2 === 1 ? category.items.length - 1 : -1;
   const crayon = CRAYON_VARIANTS[index % CRAYON_VARIANTS.length];
   const isHelados = category.id === "helados";
   const [flavorsOpen, setFlavorsOpen] = useState(false);
@@ -101,11 +100,7 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
           {category.items.map((item, ii) => {
             const tilt = TILTS[(index * 3 + ii) % TILTS.length];
             return (
-              <div
-                key={item.name.en}
-                className={`relative ${ii === lastOddIndex ? "sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-xs" : ""}`}
-                style={{ transform: `rotate(${tilt}deg)` }}
-              >
+              <div key={item.name.en} className="relative" style={{ transform: `rotate(${tilt}deg)` }}>
                 {item.popular && (
                   <StickyNote
                     label={t.menu.fanFavorite}
