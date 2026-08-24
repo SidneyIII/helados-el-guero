@@ -36,8 +36,7 @@ export const HELADO_FLAVORS: LocalizedText[] = [
 ];
 
 // Prices and item names below are pulled directly from the shop's POS
-// listing -- anything not on that list (Chamoyada, Gansito Helado) is left
-// at its prior placeholder price since it isn't verified yet.
+// listing.
 export const MENU: MenuCategory[] = [
   {
     id: "paletas",
@@ -82,9 +81,9 @@ export const MENU: MenuCategory[] = [
         price: "$5.50",
       },
       {
-        name: { en: "Helado (Large)", es: "Helado (Grande)" },
-        description: { en: "Large cup, extra scoops.", es: "Vaso grande, bolas extra." },
-        price: "$6.00",
+        name: { en: "Helado (Large / Pint)", es: "Helado (Grande / Pinta)" },
+        description: { en: "Large cup, a full pint of ice cream.", es: "Vaso grande, una pinta completa de helado." },
+        price: "$12.00",
       },
       {
         name: { en: "Cone (Small)", es: "Cono (Chico)" },
@@ -134,7 +133,7 @@ export const MENU: MenuCategory[] = [
           en: "Thai-style rolled ice cream, made fresh to order.",
           es: "Helado enrollado estilo tailandés, preparado al momento.",
         },
-        price: "$7.00",
+        price: "$8.00–$12.00",
       },
       {
         name: { en: "Soccer Ball", es: "Balón de Fútbol" },
@@ -192,7 +191,7 @@ export const MENU: MenuCategory[] = [
           en: "Mango, chamoy, tajín, tamarindo straw.",
           es: "Mango, chamoy, tajín, popote de tamarindo.",
         },
-        price: "$8.00",
+        price: "$10.00",
       },
       {
         name: { en: "Mangonona", es: "Mangonona" },
@@ -209,14 +208,6 @@ export const MENU: MenuCategory[] = [
           es: "Mezcla especial de la casa de fruta y chamoy.",
         },
         price: "$9.00",
-      },
-      {
-        name: { en: "Chamoyada", es: "Chamoyada" },
-        description: {
-          en: "Icy chamoy treat with seasonal fruit.",
-          es: "Postre helado de chamoy con fruta de temporada.",
-        },
-        price: "$6.50",
       },
     ],
   },
@@ -242,7 +233,7 @@ export const MENU: MenuCategory[] = [
           en: "Warm corn, mayo, cotija, chile, lime — large.",
           es: "Elote caliente, mayonesa, queso cotija, chile, limón — grande.",
         },
-        price: "$8.00",
+        price: "$9.00",
       },
       {
         name: { en: "Elote", es: "Elote" },
@@ -257,6 +248,11 @@ export const MENU: MenuCategory[] = [
         description: { en: "Grilled corn on the cob, extra spicy.", es: "Elote asado, extra picante." },
         price: "$6.00",
         image: { src: "/menu/elote.jpg", alt: "Elote Fuego" },
+      },
+      {
+        name: { en: "Chorreada", es: "Chorreada" },
+        description: { en: "", es: "" },
+        price: "$14.00",
       },
     ],
   },
@@ -275,14 +271,6 @@ export const MENU: MenuCategory[] = [
           es: "Fresas con crema dulce y leche condensada.",
         },
         price: "$9.00",
-      },
-      {
-        name: { en: "Fresas Con Crema (Small)", es: "Fresas Con Crema (Chica)" },
-        description: {
-          en: "Strawberries with sweet cream and condensed milk — small.",
-          es: "Fresas con crema dulce y leche condensada — chica.",
-        },
-        price: "$5.00",
       },
       {
         name: { en: "Dubai Strawberries", es: "Fresas Dubái" },
@@ -310,12 +298,7 @@ export const MENU: MenuCategory[] = [
           en: "Jumbo stuffed strawberry dessert.",
           es: "Postre de fresa gigante rellena.",
         },
-        price: "$10.00",
-      },
-      {
-        name: { en: "Fruta Special", es: "Fruta Especial" },
-        description: { en: "Chef's special fruit cup.", es: "Copa de fruta especial de la casa." },
-        price: "$4.00",
+        price: "$12.00",
       },
       {
         name: { en: "Frutas Del Dia", es: "Frutas Del Día" },
@@ -334,13 +317,12 @@ export const MENU: MenuCategory[] = [
         price: "$10.00",
       },
       {
-        name: { en: "Gansito Helado", es: "Gansito Helado" },
+        name: { en: "Banana Split", es: "Banana Split" },
         description: {
-          en: "Ice cream inspired by the classic Gansito snack cake — chocolate, strawberry, sprinkles.",
-          es: "Helado inspirado en el clásico pastelito Gansito — chocolate, fresa, chispas.",
+          en: "Bananas, ice cream, and all the classic toppings.",
+          es: "Plátano, helado y todos los toppings clásicos.",
         },
-        price: "$6.50",
-        popular: true,
+        price: "$12.00",
       },
     ],
   },

@@ -484,7 +484,7 @@ const REVIEW_GROUPS: ReviewGroup[] = [
       },
       {
         name: "— Diego M.",
-        quote: "Chamoyada hits different on a summer afternoon — icy, spicy, and perfectly balanced.",
+        quote: "Mangonada hits different on a summer afternoon — icy, spicy, and perfectly balanced.",
         rating: "★★★★★",
       },
     ],
