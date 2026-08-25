@@ -293,7 +293,7 @@ export const MENU: MenuCategory[] = [
         image: { src: "/menu/dubaichoc.png", alt: "Dubai Strawberries" },
       },
       {
-        name: { en: "Frutas Del Dia", es: "Frutas Del Día" },
+        name: { en: "Fruit Cup", es: "Vaso de Fruta" },
         description: {
           en: "Loaded fruit cup topped with chamoy and tajín.",
           es: "Copa de fruta cargada con chamoy y tajín.",
