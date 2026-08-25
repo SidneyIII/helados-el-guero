@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { useLanguage } from "@/lib/language-context";
@@ -13,7 +14,7 @@ export default function Footer() {
     <footer className="border-t-2 border-espresso/10 bg-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-3">
         <div>
-          <p className="font-body text-sm font-semibold text-espresso">{t.tagline}</p>
+          <Image src="/logo.jpg" alt="Helados El Güero logo" width={200} height={200} className="h-auto w-32" />
           <div className="mt-4 flex gap-4 font-body text-sm font-semibold text-terracotta">
             <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-espresso">
               Instagram
@@ -50,7 +51,7 @@ export default function Footer() {
 
       <div className="border-t border-espresso/10 px-6 py-4 text-center font-body text-xs text-espresso/50">
         <p>
-          © {new Date().getFullYear()} {siteConfig.name}. {t.footer.madeWithCare}
+          © {new Date().getFullYear()} {siteConfig.name}.
         </p>
         <p className="mt-1">
           <a href="#contact" className="hover:text-terracotta">

@@ -1,6 +1,5 @@
 export const translations = {
   en: {
-    tagline: "Family-owned Mexican ice cream & antojitos in Council Bluffs",
     nav: {
       home: "Home",
       menu: "Menu",
@@ -64,9 +63,9 @@ export const translations = {
     },
     partner: {
       restaurant: "Our Partner Restaurant",
-      nextDoor: "Right Next Door",
+      nextDoor: "Location",
       followThem: "Follow Them",
-      blurb: "Bold Mexican flavors, right next door in Council Bluffs.",
+      blurb: "620 South Main Street, Council Bluffs, IA — right next door.",
     },
     findUs: {
       heading: "Find Us",
@@ -95,7 +94,6 @@ export const translations = {
     footer: {
       visitUs: "Visit Us",
       hours: "Hours",
-      madeWithCare: "Made with care in Council Bluffs, Iowa.",
       getInTouch: "Get in touch",
       privacyPolicy: "Privacy Policy",
       terms: "Terms & Conditions",
@@ -115,7 +113,6 @@ export const translations = {
     } as Record<string, string>,
   },
   es: {
-    tagline: "Helados y antojitos mexicanos, negocio familiar en Council Bluffs",
     nav: {
       home: "Inicio",
       menu: "Menú",
@@ -179,9 +176,9 @@ export const translations = {
     },
     partner: {
       restaurant: "Nuestro Restaurante Socio",
-      nextDoor: "Justo Al Lado",
+      nextDoor: "Ubicación",
       followThem: "Síguelos",
-      blurb: "Sabores mexicanos audaces, justo al lado en Council Bluffs.",
+      blurb: "620 South Main Street, Council Bluffs, IA — justo al lado.",
     },
     findUs: {
       heading: "Encuéntranos",
@@ -210,7 +207,6 @@ export const translations = {
     footer: {
       visitUs: "Visítanos",
       hours: "Horario",
-      madeWithCare: "Hecho con cariño en Council Bluffs, Iowa.",
       getInTouch: "Contáctanos",
       privacyPolicy: "Política de Privacidad",
       terms: "Términos y Condiciones",
