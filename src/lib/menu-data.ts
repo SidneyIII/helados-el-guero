@@ -33,6 +33,7 @@ export const HELADO_FLAVORS: LocalizedText[] = [
   { en: "Guava", es: "Guayaba" },
   { en: "Dragonfruit", es: "Pitahaya" },
   { en: "Gansito", es: "Gansito" },
+  { en: "Eggnog (Rompope)", es: "Rompope" },
 ];
 
 // Prices and item names below are pulled directly from the shop's POS
