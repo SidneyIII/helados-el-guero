@@ -194,14 +194,6 @@ export const MENU: MenuCategory[] = [
         price: "$10.00",
       },
       {
-        name: { en: "Mangonona", es: "Mangonona" },
-        description: {
-          en: "Our biggest mangonada, made to share.",
-          es: "Nuestra mangonada más grande, para compartir.",
-        },
-        price: "$12.00",
-      },
-      {
         name: { en: "Maranadas", es: "Maranadas" },
         description: {
           en: "House specialty fruit and chamoy blend.",
