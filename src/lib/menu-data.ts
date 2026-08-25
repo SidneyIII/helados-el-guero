@@ -295,8 +295,8 @@ export const MENU: MenuCategory[] = [
       {
         name: { en: "Frutas Del Dia", es: "Frutas Del Día" },
         description: {
-          en: "Fruit of the day — ask what's fresh.",
-          es: "Fruta del día — pregunta qué hay fresco.",
+          en: "Loaded fruit cup topped with chamoy and tajín.",
+          es: "Copa de fruta cargada con chamoy y tajín.",
         },
         price: "$8.00",
       },
