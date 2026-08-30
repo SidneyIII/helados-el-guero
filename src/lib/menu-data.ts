@@ -145,12 +145,12 @@ export const MENU: MenuCategory[] = [
         price: "$6.00",
       },
       {
-        name: { en: "MX Chip", es: "MX Chip" },
+        name: { en: "Chocolate Abuelita", es: "Chocolate Abuelita" },
         description: {
-          en: "Mexican chocolate chip ice cream.",
-          es: "Helado de chocolate mexicano con chispas.",
+          en: "Helado flavor made with Mexican hot chocolate.",
+          es: "Sabor de helado hecho con chocolate mexicano.",
         },
-        price: "$5.00",
+        price: "$3.50–$12.00",
       },
     ],
   },
