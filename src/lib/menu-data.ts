@@ -5,6 +5,7 @@ export type MenuItem = {
   description: LocalizedText;
   price: string;
   popular?: boolean;
+  soldOut?: boolean;
   image?: { src: string; alt: string };
 };
 
@@ -119,6 +120,7 @@ export const MENU: MenuCategory[] = [
           es: "Escultura de helado de mango hecha a mano.",
         },
         price: "$6.00",
+        soldOut: true,
       },
       {
         name: { en: "3D Peach", es: "Durazno 3D" },
@@ -127,6 +129,7 @@ export const MENU: MenuCategory[] = [
           es: "Escultura de helado de durazno hecha a mano.",
         },
         price: "$6.00",
+        soldOut: true,
       },
       {
         name: { en: "Rolled Helado", es: "Helado Enrollado" },
@@ -143,6 +146,7 @@ export const MENU: MenuCategory[] = [
           es: "Helado con forma y decorado como un balón de fútbol.",
         },
         price: "$6.00",
+        soldOut: true,
       },
       {
         name: { en: "Chocolate Abuelita", es: "Chocolate Abuelita" },

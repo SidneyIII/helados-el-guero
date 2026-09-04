@@ -109,7 +109,7 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
                   />
                 )}
                 <Tape rotate={tilt * 3} className="-top-2.5 left-1/2 h-5 w-14 -translate-x-1/2" />
-                <div className="flex h-full flex-col overflow-hidden rounded-xl border-2 border-espresso/10 bg-white text-center shadow-md">
+                <div className="relative flex h-full flex-col overflow-hidden rounded-xl border-2 border-espresso/10 bg-white text-center shadow-md">
                   {item.image && (
                     <Image
                       src={item.image.src}
@@ -126,6 +126,13 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
                       {item.price}
                     </p>
                   </div>
+                  {item.soldOut && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-espresso/60">
+                      <span className="rounded-full border-2 border-cream bg-espresso px-4 py-1.5 font-display text-sm tracking-wide text-cream uppercase">
+                        {t.menu.soldOut}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             );

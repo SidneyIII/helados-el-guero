@@ -24,6 +24,7 @@ export const translations = {
       subheading:
         "Everything made fresh, in-house, every day. Prices and flavors may vary seasonally.",
       fanFavorite: "Fan favorite!",
+      soldOut: "Sold Out",
     },
     flavors: {
       caption: "Click here to view flavors",
@@ -137,6 +138,7 @@ export const translations = {
       subheading:
         "Todo hecho fresco, en casa, todos los días. Precios y sabores pueden variar según la temporada.",
       fanFavorite: "¡Favorito de la casa!",
+      soldOut: "Agotado",
     },
     flavors: {
       caption: "Haz clic para ver los sabores",
