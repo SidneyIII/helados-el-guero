@@ -30,6 +30,7 @@ export const translations = {
       caption: "Click here to view flavors",
       modalTitle: "Our Flavors",
       close: "Close",
+      soldOut: "Sold Out",
     },
     delivery: {
       heading: "Order for Delivery",
@@ -144,6 +145,7 @@ export const translations = {
       caption: "Haz clic para ver los sabores",
       modalTitle: "Nuestros Sabores",
       close: "Cerrar",
+      soldOut: "Agotado",
     },
     delivery: {
       heading: "Pide a Domicilio",

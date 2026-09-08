@@ -19,22 +19,28 @@ export type MenuCategory = {
 
 // Ice cream flavors shown in the "Helados" flavors popup -- not tied to any
 // one item's price/description, just the full list of what's scoopable.
-export const HELADO_FLAVORS: LocalizedText[] = [
+// Updated weekly from the shop's posted flavor list; flavors not on that
+// week's list are kept (rather than deleted) and marked soldOut instead.
+export type HeladoFlavor = LocalizedText & { soldOut?: boolean };
+
+export const HELADO_FLAVORS: HeladoFlavor[] = [
   { en: "Bubblegum (Chicle)", es: "Chicle" },
   { en: "Strawberry (milk base)", es: "Fresa (base de leche)" },
   { en: "Strawberry (water base)", es: "Fresa (base de agua)" },
   { en: "Lime", es: "Limón" },
-  { en: "Chocolate (Mexican hot chocolate)", es: "Chocolate (chocolate mexicano)" },
+  { en: "Grandma's Hot Chocolate (Chocolate Abuelita)", es: "Chocolate Abuelita" },
   { en: "Vanilla", es: "Vainilla" },
   { en: "Pineapple", es: "Piña" },
   { en: "Mango", es: "Mango" },
-  { en: "Pine Nut (Piñón)", es: "Piñón" },
-  { en: "Pecan (Nuez)", es: "Nuez" },
+  { en: "Pine Nut (Piñón)", es: "Piñón", soldOut: true },
+  { en: "Pecan (Nuez)", es: "Nuez", soldOut: true },
   { en: "Cookies and Cream", es: "Galletas con Crema" },
-  { en: "Guava", es: "Guayaba" },
+  { en: "Guava", es: "Guayaba", soldOut: true },
   { en: "Dragonfruit", es: "Pitahaya" },
-  { en: "Gansito", es: "Gansito" },
+  { en: "Gansito", es: "Gansito", soldOut: true },
   { en: "Eggnog (Rompope)", es: "Rompope" },
+  { en: "Pistachio", es: "Pistache" },
+  { en: "Coffee", es: "Café" },
 ];
 
 // Prices and item names below are pulled directly from the shop's POS
