@@ -1,5 +1,11 @@
 export type LocalizedText = { en: string; es: string };
 
+// A flavor pill shown in a "view flavors" popup -- not tied to any one
+// item's price/description, just what's available to choose from. Updated
+// periodically from the shop's posted flavor list; flavors not on that
+// list are kept (rather than deleted) and marked soldOut instead.
+export type Flavor = LocalizedText & { soldOut?: boolean };
+
 export type MenuItem = {
   name: LocalizedText;
   description: LocalizedText;
@@ -7,6 +13,9 @@ export type MenuItem = {
   popular?: boolean;
   soldOut?: boolean;
   image?: { src: string; alt: string };
+  // When set, this item's card gets the glowing "tap to view flavors"
+  // treatment instead of being a plain card -- see FlavorsModal.
+  flavors?: Flavor[];
 };
 
 export type MenuCategory = {
@@ -15,15 +24,12 @@ export type MenuCategory = {
   intro: LocalizedText;
   items: MenuItem[];
   image?: { src: string; alt: string };
+  // Same idea as MenuItem.flavors, but for a category's feature image
+  // (e.g. the Helados photo) instead of an individual item card.
+  flavors?: Flavor[];
 };
 
-// Ice cream flavors shown in the "Helados" flavors popup -- not tied to any
-// one item's price/description, just the full list of what's scoopable.
-// Updated weekly from the shop's posted flavor list; flavors not on that
-// week's list are kept (rather than deleted) and marked soldOut instead.
-export type HeladoFlavor = LocalizedText & { soldOut?: boolean };
-
-export const HELADO_FLAVORS: HeladoFlavor[] = [
+export const HELADO_FLAVORS: Flavor[] = [
   { en: "Bubblegum (Chicle)", es: "Chicle" },
   { en: "Strawberry (milk base)", es: "Fresa (base de leche)" },
   { en: "Strawberry (water base)", es: "Fresa (base de agua)" },
@@ -41,6 +47,14 @@ export const HELADO_FLAVORS: HeladoFlavor[] = [
   { en: "Eggnog (Rompope)", es: "Rompope" },
   { en: "Pistachio", es: "Pistache" },
   { en: "Coffee", es: "Café" },
+];
+
+export const AGUA_FRESCA_FLAVORS: Flavor[] = [
+  { en: "Hibiscus", es: "Jamaica" },
+  { en: "Horchata", es: "Horchata" },
+  { en: "Watermelon", es: "Sandía" },
+  { en: "Guava", es: "Guayaba" },
+  { en: "Tamarind", es: "Tamarindo" },
 ];
 
 // Prices and item names below are pulled directly from the shop's POS
@@ -74,6 +88,7 @@ export const MENU: MenuCategory[] = [
     title: { en: "Helados", es: "Helados" },
     intro: { en: "Scoopable ice cream, made in-house.", es: "Helado de bola, hecho en casa." },
     image: { src: "/heladosflavors.png", alt: "Helados flavors" },
+    flavors: HELADO_FLAVORS,
     items: [
       {
         name: { en: "Helado (Small)", es: "Helado (Chico)" },
@@ -179,6 +194,7 @@ export const MENU: MenuCategory[] = [
           es: "Sabores rotativos, preparada fresca cada día.",
         },
         price: "$3.50",
+        flavors: AGUA_FRESCA_FLAVORS,
       },
       {
         name: { en: "Agua Fresca (Large)", es: "Agua Fresca (Grande)" },
@@ -187,6 +203,7 @@ export const MENU: MenuCategory[] = [
           es: "Sabores rotativos, preparada fresca cada día — grande.",
         },
         price: "$5.00",
+        flavors: AGUA_FRESCA_FLAVORS,
       },
       {
         name: { en: "Agua Preparada", es: "Agua Preparada" },

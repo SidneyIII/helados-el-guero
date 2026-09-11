@@ -8,9 +8,9 @@ import Tilde from "@/components/Tilde";
 import Tape from "@/components/Tape";
 import StickyNote from "@/components/StickyNote";
 import ReviewForm from "@/components/ReviewForm";
-import HeladosFlavorsModal from "@/components/HeladosFlavorsModal";
+import FlavorsModal from "@/components/FlavorsModal";
 import { siteConfig } from "@/lib/site-config";
-import { MENU, type MenuCategory } from "@/lib/menu-data";
+import { MENU, type MenuCategory, type Flavor } from "@/lib/menu-data";
 import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
 
@@ -31,8 +31,7 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
   const t = translations[language];
   const single = category.items.length === 1;
   const crayon = CRAYON_VARIANTS[index % CRAYON_VARIANTS.length];
-  const isHelados = category.id === "helados";
-  const [flavorsOpen, setFlavorsOpen] = useState(false);
+  const [openFlavors, setOpenFlavors] = useState<Flavor[] | null>(null);
   return (
     <FadeInSection>
       <section id={category.id} className={`${crayon} scroll-mt-20 p-6 text-center md:p-7`}>
@@ -44,11 +43,11 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
         <p className="mt-1 font-body text-espresso/70">{category.intro[language]}</p>
 
         {category.image &&
-          (isHelados ? (
+          (category.flavors ? (
             <>
               <button
                 type="button"
-                onClick={() => setFlavorsOpen(true)}
+                onClick={() => setOpenFlavors(category.flavors!)}
                 className="group relative mx-auto mt-8 block w-full max-w-xs cursor-pointer"
                 style={{ transform: `rotate(${TILTS[index % TILTS.length]}deg)` }}
               >
@@ -74,7 +73,6 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
                 </svg>
                 {t.flavors.caption}
               </div>
-              <HeladosFlavorsModal open={flavorsOpen} onClose={() => setFlavorsOpen(false)} />
             </>
           ) : (
             <div
@@ -100,7 +98,11 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
           {category.items.map((item, ii) => {
             const tilt = TILTS[(index * 3 + ii) % TILTS.length];
             return (
-              <div key={item.name.en} className="relative" style={{ transform: `rotate(${tilt}deg)` }}>
+              <div
+                key={item.name.en}
+                className={`relative ${item.flavors ? "group" : ""}`}
+                style={{ transform: `rotate(${tilt}deg)` }}
+              >
                 {item.popular && (
                   <StickyNote
                     label={t.menu.fanFavorite}
@@ -109,7 +111,24 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
                   />
                 )}
                 <Tape rotate={tilt * 3} className="-top-2.5 left-1/2 h-5 w-14 -translate-x-1/2" />
-                <div className="relative flex h-full flex-col overflow-hidden rounded-xl border-2 border-espresso/10 bg-white text-center shadow-md">
+                {item.flavors && (
+                  <span className="absolute -inset-3 rounded-2xl bg-sage/80 opacity-90 blur-xl transition-opacity group-hover:opacity-100" />
+                )}
+                <div
+                  className={`relative flex h-full flex-col overflow-hidden rounded-xl border-2 border-espresso/10 bg-white text-center shadow-md ${
+                    item.flavors ? "cursor-pointer transition-transform group-hover:scale-[1.02]" : ""
+                  }`}
+                  {...(item.flavors
+                    ? {
+                        role: "button",
+                        tabIndex: 0,
+                        onClick: () => setOpenFlavors(item.flavors!),
+                        onKeyDown: (e: React.KeyboardEvent) => {
+                          if (e.key === "Enter" || e.key === " ") setOpenFlavors(item.flavors!);
+                        },
+                      }
+                    : {})}
+                >
                   {item.image && (
                     <Image
                       src={item.image.src}
@@ -125,6 +144,20 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
                     <p className="mt-1 font-body text-lg font-semibold text-terracotta">
                       {item.price}
                     </p>
+                    {item.flavors && (
+                      <p className="mt-1 flex items-center gap-1 font-body text-xs font-semibold text-terracotta">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                          className="h-3 w-3 rotate-180"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                        {t.flavors.caption}
+                      </p>
+                    )}
                   </div>
                   {item.soldOut && (
                     <div className="absolute inset-0 flex items-center justify-center bg-espresso/60">
@@ -138,6 +171,7 @@ function MenuCategoryBlock({ category, index }: { category: MenuCategory; index:
             );
           })}
         </div>
+        <FlavorsModal open={openFlavors !== null} onClose={() => setOpenFlavors(null)} flavors={openFlavors ?? []} />
       </section>
     </FadeInSection>
   );

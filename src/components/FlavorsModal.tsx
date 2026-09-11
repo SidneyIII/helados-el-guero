@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { HELADO_FLAVORS } from "@/lib/menu-data";
+import type { Flavor } from "@/lib/menu-data";
 import { useLanguage } from "@/lib/language-context";
 import { translations } from "@/lib/translations";
 
@@ -11,12 +11,16 @@ import { translations } from "@/lib/translations";
 // menu's jump-link pills.
 const PILL_COLORS = ["pill-crayon-a", "pill-crayon-b", "pill-crayon-c"];
 
-export default function HeladosFlavorsModal({
+export default function FlavorsModal({
   open,
   onClose,
+  flavors,
+  title,
 }: {
   open: boolean;
   onClose: () => void;
+  flavors: Flavor[];
+  title?: string;
 }) {
   const { language } = useLanguage();
   const t = translations[language].flavors;
@@ -37,6 +41,8 @@ export default function HeladosFlavorsModal({
 
   if (!open) return null;
 
+  const modalTitle = title ?? t.modalTitle;
+
   return createPortal(
     <div
       className="fixed inset-0 z-[60] flex items-center justify-center bg-espresso/50 p-6 backdrop-blur-sm"
@@ -45,7 +51,7 @@ export default function HeladosFlavorsModal({
       <div
         role="dialog"
         aria-modal="true"
-        aria-label={t.modalTitle}
+        aria-label={modalTitle}
         onClick={(e) => e.stopPropagation()}
         className="relative flex max-h-[85vh] w-full max-w-md flex-col rounded-2xl border-2 border-espresso/10 bg-cream text-center shadow-xl"
       >
@@ -61,12 +67,12 @@ export default function HeladosFlavorsModal({
             </svg>
           </button>
 
-          <p className="font-display text-2xl text-espresso">{t.modalTitle}</p>
+          <p className="font-display text-2xl text-espresso">{modalTitle}</p>
         </div>
 
         <div className="overflow-y-auto px-6 pb-6 md:px-8 md:pb-8">
           <ul className="grid grid-cols-1 gap-x-3 gap-y-3 sm:grid-cols-2">
-            {HELADO_FLAVORS.map((flavor, i) => (
+            {flavors.map((flavor, i) => (
               <li key={flavor.en} className="flex justify-center">
                 <span
                   className={`${
