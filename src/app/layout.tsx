@@ -18,10 +18,23 @@ const baloo = Baloo_2({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteDescription =
+  "Family-owned Mexican ice cream shop in Council Bluffs, Iowa. Paletas, helados, esquites, elotes, mangonadas, tostilocos, and fresas con crema.";
+
 export const metadata: Metadata = {
   title: "Helados El Güero | Council Bluffs, IA",
-  description:
-    "Family-owned Mexican ice cream shop in Council Bluffs, Iowa. Paletas, helados, esquites, elotes, mangonadas, tostilocos, and fresas con crema.",
+  description: siteDescription,
+  openGraph: {
+    title: "Helados El Güero",
+    description: siteDescription,
+    siteName: "Helados El Güero",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Helados El Güero",
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({
